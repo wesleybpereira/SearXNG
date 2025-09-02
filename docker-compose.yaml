@@ -27,7 +27,8 @@ services:
       - searxng-data:/var/cache/searxng:rw
     environment:
       - SEARXNG_BASE_URL=https://${SEARXNG_HOSTNAME:-localhost}/
-      - SEARXNG_SECRET=e998d4d313651ee863699f95710c85338cbe4da4b616f2c8cd3c1f83b8253c
+      - SEARXNG_SECRET=${SEARXNG_SECRET:-ultrasecretkey}  # change this!
+      - SEARXNG_REDIS_URL=redis://searxng-redis:6379/0
     depends_on:
       - searxng-redis
     logging:
