@@ -1,23 +1,4 @@
 services:
-  caddy:
-    container_name: caddy
-    image: docker.io/library/caddy:2-alpine
-    network_mode: host
-    restart: unless-stopped
-    volumes:
-      - ./Caddyfile:/etc/caddy/Caddyfile:ro
-      - caddy-data:/data:rw
-      - caddy-config:/config:rw
-    environment:
-      - SEARXNG_HOSTNAME=${SEARXNG_HOSTNAME:-http://localhost}
-      - SEARXNG_TLS=${LETSENCRYPT_EMAIL:-internal}
-      - SEARXNG_SECRET_KEY=0998d4d31365a1ee063699f95710c85338cbe4da4b6116f2c8cd3c1f83b0253c
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "1m"
-        max-file: "1"
-
   searxng-redis:
     container_name: searxng-redis
     image: docker.io/valkey/valkey:8-alpine
@@ -46,7 +27,7 @@ services:
       - searxng-data:/var/cache/searxng:rw
     environment:
       - SEARXNG_BASE_URL=https://${SEARXNG_HOSTNAME:-localhost}/
-      - SEARXNG_SECRET_KEY=0998d4d31365a1ee063699f95710c85338cbe4da4b6116f2c8cd3c1f83b0253c
+      - SEARXNG_SECRET_KEY=${SEARXNG_SECRET_KEY:-ultrasecretkey}  # change this!
     logging:
       driver: "json-file"
       options:
