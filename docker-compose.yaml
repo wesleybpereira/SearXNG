@@ -38,7 +38,5 @@ networks:
   searxng:
 
 volumes:
-  caddy-data:
-  caddy-config:
   valkey-data2:
   searxng-data:
