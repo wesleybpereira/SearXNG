@@ -4,3 +4,49 @@ server:
   # base_url is defined in the SEARXNG_BASE_URL environment variable, see .env and docker-compose.yml
   limiter: false  # enable this when running the instance for a public usage on the internet
   image_proxy: true
+
+search:
+  default_lang: "pt"
+  formats: [html, json]
+  max_request_timeout: 45.0
+  request_timeout: 30.0
+  rate_limit: 1200  # 1200 requests per 10 minutes
+  safe_search: 0
+  autocomplete: ""
+  default_lang: "all"
+
+server:
+  method: "POST"
+  default_http_headers:
+    X-Content-Type-Options: "nosniff"
+    X-Download-Options: "noopen"
+    X-Frame-Options: "DENY"
+    X-XSS-Protection: "1; mode=block"
+    Referrer-Policy: "no-referrer"
+
+outgoing:
+  request_timeout: 30.0
+  useragent_suffix: ""
+  pool_connections: 100
+  pool_maxsize: 20
+  enable_http2: true
+
+engines:
+  - name: google
+    engine: google
+    disabled: false
+    shortcut: g
+    timeout: 30.0
+    use_mobile_ui: false
+    
+  - name: bing
+    engine: bing
+    disabled: false
+    shortcut: b
+    timeout: 30.0
+    
+  - name: duckduckgo
+    engine: duckduckgo
+    disabled: false
+    shortcut: ddg
+    timeout: 30.0

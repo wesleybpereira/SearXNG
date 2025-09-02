@@ -20,8 +20,10 @@ services:
     restart: unless-stopped
     networks:
       - searxng
-    ports:
-      - "127.0.0.1:9090:8080"
+    #ports:
+    #  - "127.0.0.1:9090:8080"
+    expose:
+    - "8080"
     volumes:
       - ./searxng:/etc/searxng:rw
       - searxng-data:/var/cache/searxng:rw
