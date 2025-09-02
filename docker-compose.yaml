@@ -28,7 +28,7 @@ services:
     environment:
       - SEARXNG_BASE_URL=https://${SEARXNG_HOSTNAME:-localhost}/
       - SEARXNG_SECRET=${SEARXNG_SECRET:-ultrasecretkey}  # change this!
-      - SEARXNG_REDIS_URL=redis://searxng-redis:6379/0
+      - SEARXNG_VALKEY_URL=redis://searxng-redis:6379/0
     depends_on:
       - searxng-redis
     logging:
