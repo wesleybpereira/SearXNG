@@ -17,8 +17,8 @@ services:
         max-size: "1m"
         max-file: "1"
 
-  redis:
-    container_name: redis
+  searxng-redis:
+    container_name: searxng-redis
     image: docker.io/valkey/valkey:8-alpine
     command: valkey-server --save 30 1 --loglevel warning
     restart: unless-stopped
@@ -45,6 +45,7 @@ services:
       - searxng-data:/var/cache/searxng:rw
     environment:
       - SEARXNG_BASE_URL=https://${SEARXNG_HOSTNAME:-localhost}/
+      - SEARXNG_SECRET_KEY=${SEARXNG_SECRET_KEY:-changeme}
     logging:
       driver: "json-file"
       options:
