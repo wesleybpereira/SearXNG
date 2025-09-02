@@ -50,3 +50,8 @@ engines:
     disabled: false
     shortcut: ddg
     timeout: 30.0
+
+  - name: startpage
+    engine: startpage
+    disabled: true   # deixe true se não quiser usar (evita erro no log)
+    shortcut: sp

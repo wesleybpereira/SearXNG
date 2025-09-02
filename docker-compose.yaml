@@ -38,6 +38,11 @@ services:
       options:
         max-size: "1m"
         max-file: "1"
+    labels:
+    # Novo middleware para repassar IP real
+      - traefik.http.routers.dach-searxng-lhhm4z-24-web.middlewares=redirect-to-https@file,realip
+      - traefik.http.middlewares.realip.headers.customrequestheaders.X-Forwarded-For=$${remoteAddr}
+      - traefik.http.middlewares.realip.headers.customrequestheaders.X-Real-IP=$${remoteAddr}
 
 networks:
   searxng:
