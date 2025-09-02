@@ -46,7 +46,7 @@ services:
       - searxng-data:/var/cache/searxng:rw
     environment:
       - SEARXNG_BASE_URL=https://${SEARXNG_HOSTNAME:-localhost}/
-      - SEARXNG_SECRET_KEY=${SEARXNG_SECRET_KEY:-changeme}
+      - SEARXNG_SECRET_KEY=${SEARXNG_SECRET_KEY:}
     logging:
       driver: "json-file"
       options:
